@@ -12,8 +12,15 @@ class MyApp extends StatelessWidget {
   /// 위젯이 생성되자마자 실행
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.red,
+    return MaterialApp(
+
+      // Scaffold 기본적인 위젯 모음
+      home: Scaffold(
+        appBar: AppBar(title: Text('cool app')),
+        body: Container(
+          color: Colors.amber,
+        ),
+      ),
     );
   }
 }
