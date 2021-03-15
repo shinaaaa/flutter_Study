@@ -1,7 +1,8 @@
-/// "Dart"의 처음 실행되는 부분
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart'; // iOS cupertino design
+import 'package:flutter/material.dart'; // android material design
 import 'package:instartgram_clone/home_page.dart';
 
+/// "Dart"의 처음 실행되는 부분
 void main() {
   // Flutter App 시작되는 부분
   runApp(MyApp());
