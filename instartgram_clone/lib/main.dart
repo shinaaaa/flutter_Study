@@ -1,5 +1,6 @@
 /// "Dart"의 처음 실행되는 부분
 import 'package:flutter/material.dart';
+import 'package:instartgram_clone/home_page.dart';
 
 void main() {
   // Flutter App 시작되는 부분
@@ -13,14 +14,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-
       // Scaffold 기본적인 위젯 모음
-      home: Scaffold(
-        appBar: AppBar(title: Text('cool app')),
-        body: Container(
-          color: Colors.amber,
-        ),
-      ),
+      home: HomePage(),
     );
   }
 }
