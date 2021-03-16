@@ -15,7 +15,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // Scaffold 기본적인 위젯 모음
       home: HomePage(),
     );
   }
