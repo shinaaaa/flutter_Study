@@ -11,6 +11,7 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
+/// 네비게이션 버튼 목록
 class _HomePageState extends State<HomePage> {
   List<BottomNavigationBarItem> btmNavItems = [
     BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
@@ -20,6 +21,7 @@ class _HomePageState extends State<HomePage> {
     BottomNavigationBarItem(icon: Icon(Icons.account_circle), label: ''),
   ];
 
+  // 선택된 네비게이션
   int _selectedIndex = 0;
 
   @override
@@ -34,6 +36,7 @@ class _HomePageState extends State<HomePage> {
         showSelectedLabels: false,
         // 선택 안된 아이콘의 레이블
         showUnselectedLabels: false,
+        // 네비게이션 목록
         items: btmNavItems,
         // 선택이 안된 경우
         unselectedItemColor: Colors.grey,
