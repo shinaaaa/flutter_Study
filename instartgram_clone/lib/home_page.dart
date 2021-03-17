@@ -24,12 +24,32 @@ class _HomePageState extends State<HomePage> {
   // 선택된 네비게이션
   int _selectedIndex = 0;
 
+  /// 화면 전환
+  static List<Widget> _screens = <Widget>[
+    Container(
+      color: Colors.amber,
+    ),
+    Container(
+      color: Colors.blue,
+    ),
+    Container(
+      color: Colors.green,
+    ),
+    Container(
+      color: Colors.deepPurple,
+    ),
+    Container(
+      color: Colors.cyan,
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
     // Scaffold 기본적인 위젯 모음
     return Scaffold(
-      body: Container(
-        color: Colors.amber,
+      body: IndexedStack(
+        index: _selectedIndex,
+        children: _screens,
       ),
       bottomNavigationBar: BottomNavigationBar(
         // 선택된 아이콘의 레이블
