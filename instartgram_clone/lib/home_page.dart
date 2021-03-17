@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart'; // android material design
+import 'package:flutter/material.dart';
+import 'package:instartgram_clone/feed_srceen.dart'; // android material design
 
 /// 홈페이지
 class HomePage extends StatefulWidget {
@@ -26,9 +27,7 @@ class _HomePageState extends State<HomePage> {
 
   /// 화면 전환
   static List<Widget> _screens = <Widget>[
-    Container(
-      color: Colors.amber,
-    ),
+    feedScreen(),
     Container(
       color: Colors.blue,
     ),
