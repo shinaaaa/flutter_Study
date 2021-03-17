@@ -47,6 +47,9 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     // Scaffold 기본적인 위젯 모음
     return Scaffold(
+      /// IndexedStack
+      /// 화면전환시 레이아웃을 새로 그리는 것을 방지
+      /// Stack에 쌓아 놓고 원하는 페이지를 최상단으로 오림
       body: IndexedStack(
         index: _selectedIndex,
         children: _screens,
@@ -73,8 +76,6 @@ class _HomePageState extends State<HomePage> {
   /// 클릭 이벤트
   /// @param index 클릭 아이템
   void _onBtmItemClick(int index) {
-    print(index);
-
     // extends State<> 안에서만 사용 가능
     setState(() {
       _selectedIndex = index;
