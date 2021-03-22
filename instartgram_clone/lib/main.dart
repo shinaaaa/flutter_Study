@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart'; // iOS cupertino design
 import 'package:flutter/material.dart'; // android material design
+import 'package:instartgram_clone/constants/material_white.dart';
 import 'package:instartgram_clone/home_page.dart';
 
 /// "Dart"의 처음 실행되는 부분
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: HomePage(),
+      theme: ThemeData(primarySwatch: white),
     );
   }
 }

@@ -8,7 +8,8 @@ class feedScreen extends StatelessWidget {
         title: Text(
           "Instagram",
           style: TextStyle(
-            fontFamily: "VeganStyle"
+            fontFamily: "VeganStyle",
+            color: Colors.black87
           ),
         ),
       ),
