@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:instartgram_clone/constants/common_size.dart';
 
 import 'my_progress_indicator.dart';
 
@@ -16,6 +17,36 @@ class Post extends StatelessWidget {
   Widget build(BuildContext context) {
     if (size == null) size = MediaQuery.of(context).size;
 
+    return Column(
+      children: <Widget>[_postImage(), _postHeader()],
+    );
+  }
+
+  Widget _postHeader() {
+    return Row(
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.all(common_xxs_gap),
+          child: ClipOval(
+            child: CachedNetworkImage(
+              imageUrl: 'https://picsum.photos/100',
+              width: avatar_size,
+              height: avatar_size,
+            ),
+          ),
+        ),
+        Expanded(child: Text('username')),
+        IconButton(
+            icon: Icon(
+              Icons.more_horiz,
+              color: Colors.black87,
+            ),
+            onPressed: () {})
+      ],
+    );
+  }
+
+  CachedNetworkImage _postImage() {
     return CachedNetworkImage(
       imageUrl: 'https://picsum.photos/id/$index/200/200',
       placeholder: (BuildContext context, String url) {
