@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:instartgram_clone/constants/common_size.dart';
 
 import 'my_progress_indicator.dart';
+import 'rounded_avatar.dart';
 
 class Post extends StatelessWidget {
   final int index;
@@ -27,13 +28,7 @@ class Post extends StatelessWidget {
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.all(common_xxs_gap),
-          child: ClipOval(
-            child: CachedNetworkImage(
-              imageUrl: 'https://picsum.photos/100',
-              width: avatar_size,
-              height: avatar_size,
-            ),
-          ),
+          child: RoundedAvatar(),
         ),
         Expanded(child: Text('username')),
         IconButton(
