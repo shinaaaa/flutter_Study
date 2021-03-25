@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:instartgram_clone/feed_srceen.dart'; // android material design
+import 'package:instartgram_clone/screens/feed_srceen.dart';
+import 'package:instartgram_clone/screens/profile_screen.dart'; // android material design
 
 /// 홈페이지
 class HomePage extends StatefulWidget {
@@ -37,9 +39,7 @@ class _HomePageState extends State<HomePage> {
     Container(
       color: Colors.deepPurple,
     ),
-    Container(
-      color: Colors.cyan,
-    ),
+    ProfileScreen(),
   ];
 
   @override
