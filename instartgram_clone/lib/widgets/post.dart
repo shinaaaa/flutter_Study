@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:instartgram_clone/constants/common_size.dart';
+import 'package:instartgram_clone/widgets/comment.dart';
 
 import 'my_progress_indicator.dart';
 import 'rounded_avatar.dart';
@@ -24,14 +25,33 @@ class Post extends StatelessWidget {
         _postHeader(),
         _postImage(),
         _postAction(),
-        Padding(
-          padding: const EdgeInsets.only(left: common_gap),
-          child: Text(
-            '1200 Likes',
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ),
-        ),
+        _postLikes(),
+        _postCaption()
       ],
+    );
+  }
+
+  Widget _postCaption() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        horizontal: common_gap,
+        vertical: common_xxs_gap,
+      ),
+      child: Comment(
+        showImage: false,
+        username: 'shin',
+        text: 'text',
+      ),
+    );
+  }
+
+  Padding _postLikes() {
+    return Padding(
+      padding: const EdgeInsets.only(left: common_gap),
+      child: Text(
+        '1200 Likes',
+        style: TextStyle(fontWeight: FontWeight.bold),
+      ),
     );
   }
 
