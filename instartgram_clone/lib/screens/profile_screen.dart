@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:instartgram_clone/constants/common_size.dart';
 
@@ -11,10 +13,38 @@ class ProfileScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               _appbar(),
-              _username(),
+              Expanded(
+                child: CustomScrollView(
+                  slivers: [
+                    SliverList(
+                        delegate: SliverChildListDelegate(
+                            [_username(), _userBio(), _editProfileButton()]))
+                  ],
+                ),
+              ),
             ],
           ),
         ));
+  }
+
+  Padding _editProfileButton() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: common_gap),
+      child: SizedBox(
+        height: 24,
+        child: OutlineButton(
+          onPressed: () {},
+          borderSide: BorderSide(color: Colors.black54),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(6),
+          ),
+          child: Text(
+            "Edit Profile",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+        ),
+      ),
+    );
   }
 
   Row _appbar() {
@@ -47,4 +77,16 @@ class ProfileScreen extends StatelessWidget {
       ),
     );
   }
+}
+
+Widget _userBio() {
+  return Padding(
+    padding: const EdgeInsets.symmetric(horizontal: common_gap),
+    child: Text(
+      "This is what I believe",
+      style: TextStyle(
+        fontWeight: FontWeight.w400,
+      ),
+    ),
+  );
 }
