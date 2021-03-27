@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:instartgram_clone/constants/common_size.dart';
 
 class ProfileScreen extends StatelessWidget {
   @override
@@ -7,7 +8,11 @@ class ProfileScreen extends StatelessWidget {
         backgroundColor: Colors.grey[100],
         body: SafeArea(
           child: Column(
-            children: [_appbar()],
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _appbar(),
+              _username(),
+            ],
           ),
         ));
   }
@@ -28,6 +33,18 @@ class ProfileScreen extends StatelessWidget {
           onPressed: () {},
         )
       ],
+    );
+  }
+
+  Widget _username() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: common_gap),
+      child: Text(
+        "username",
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+        ),
+      ),
     );
   }
 }
