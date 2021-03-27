@@ -6,14 +6,20 @@ import 'package:instartgram_clone/widgets/comment.dart';
 import 'my_progress_indicator.dart';
 import 'rounded_avatar.dart';
 
-class Post extends StatelessWidget {
+class Post extends StatefulWidget {
   final int index;
-  Size size;
 
   Post(
     this.index, {
     Key key,
   }) : super(key: key);
+
+  @override
+  _PostState createState() => _PostState();
+}
+
+class _PostState extends State<Post> {
+  Size size;
 
   @override
   Widget build(BuildContext context) {
@@ -99,7 +105,7 @@ class Post extends StatelessWidget {
 
   CachedNetworkImage _postImage() {
     return CachedNetworkImage(
-      imageUrl: 'https://picsum.photos/id/$index/200/200',
+      imageUrl: 'https://picsum.photos/id/${widget.index}/200/200',
       placeholder: (BuildContext context, String url) {
         return MyProgressIndicator(
           containerSize: size.width,

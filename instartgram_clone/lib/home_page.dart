@@ -29,7 +29,7 @@ class _HomePageState extends State<HomePage> {
 
   /// 화면 전환
   static List<Widget> _screens = <Widget>[
-    feedScreen(),
+    FeedScreen(),
     Container(
       color: Colors.blue,
     ),
