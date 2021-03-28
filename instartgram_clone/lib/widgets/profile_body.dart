@@ -9,7 +9,9 @@ class ProfileBody extends StatefulWidget {
 }
 
 class _ProfileBodyState extends State<ProfileBody> {
-  SelectedTab selectedTab = SelectedTab.left;
+  SelectedTab _selectedTab = SelectedTab.left;
+  double _leftImagesPageMargin = 0;
+  double _rightImagesPageMargin = size.width;
 
   @override
   Widget build(BuildContext context) {
@@ -24,29 +26,52 @@ class _ProfileBodyState extends State<ProfileBody> {
             _tabButtons(),
             _selectedIndicator(),
           ])),
-          SliverToBoxAdapter(
-              // shrinkWrap => true 내용물 만큼 자리 차지
-              // physics => 이중 스크롤 방지
-              child: GridView.count(
-            physics: NeverScrollableScrollPhysics(),
-            shrinkWrap: true,
-            crossAxisCount: 3,
-            childAspectRatio: 1,
-            children: List.generate(
-                30,
-                (index) => CachedNetworkImage(
-                    fit: BoxFit.cover,
-                    imageUrl: "https://picsum.photos/id/$index/100/100")),
-          ))
+          _imagesPager()
         ],
       ),
+    );
+  }
+
+  SliverToBoxAdapter _imagesPager() {
+    return SliverToBoxAdapter(
+        // shrinkWrap => true 내용물 만큼 자리 차지
+        // physics => 이중 스크롤 방지
+        child: Stack(
+      children: [
+        AnimatedContainer(
+          duration: Duration(milliseconds: 300),
+          transform: Matrix4.translationValues(_leftImagesPageMargin, 0, 0),
+          curve: Curves.fastOutSlowIn,
+          child: _images(),
+        ),
+        AnimatedContainer(
+          duration: Duration(milliseconds: 300),
+          transform: Matrix4.translationValues(_rightImagesPageMargin, 0, 0),
+          curve: Curves.fastOutSlowIn,
+          child: _images(),
+        ),
+      ],
+    ));
+  }
+
+  GridView _images() {
+    return GridView.count(
+      physics: NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
+      crossAxisCount: 3,
+      childAspectRatio: 1,
+      children: List.generate(
+          30,
+          (index) => CachedNetworkImage(
+              fit: BoxFit.cover,
+              imageUrl: "https://picsum.photos/id/$index/100/100")),
     );
   }
 
   Widget _selectedIndicator() {
     return AnimatedContainer(
       duration: Duration(milliseconds: 300),
-      alignment: selectedTab == SelectedTab.left
+      alignment: _selectedTab == SelectedTab.left
           ? Alignment.centerLeft
           : Alignment.centerRight,
       child: Container(
@@ -65,26 +90,30 @@ class _ProfileBodyState extends State<ProfileBody> {
             child: IconButton(
                 icon: ImageIcon(
                   AssetImage('assets/images/grid.png'),
-                  color: selectedTab == SelectedTab.left
+                  color: _selectedTab == SelectedTab.left
                       ? Colors.black
                       : Colors.black26,
                 ),
                 onPressed: () {
                   setState(() {
-                    selectedTab = SelectedTab.left;
+                    _selectedTab = SelectedTab.left;
+                    _leftImagesPageMargin = 0;
+                    _rightImagesPageMargin = size.width;
                   });
                 })),
         Expanded(
             child: IconButton(
                 icon: ImageIcon(
                   AssetImage('assets/images/saved.png'),
-                  color: selectedTab == SelectedTab.left
+                  color: _selectedTab == SelectedTab.left
                       ? Colors.black26
                       : Colors.black,
                 ),
                 onPressed: () {
                   setState(() {
-                    selectedTab = SelectedTab.right;
+                    _selectedTab = SelectedTab.right;
+                    _leftImagesPageMargin = -size.width;
+                    _rightImagesPageMargin = 0;
                   });
                 }))
       ],
