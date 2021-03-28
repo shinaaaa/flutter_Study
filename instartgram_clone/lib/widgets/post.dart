@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:instartgram_clone/constants/common_size.dart';
+import 'package:instartgram_clone/constants/screen_size.dart';
 import 'package:instartgram_clone/widgets/comment.dart';
 
 import 'my_progress_indicator.dart';
@@ -19,12 +20,8 @@ class Post extends StatefulWidget {
 }
 
 class _PostState extends State<Post> {
-  Size size;
-
   @override
   Widget build(BuildContext context) {
-    if (size == null) size = MediaQuery.of(context).size;
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[

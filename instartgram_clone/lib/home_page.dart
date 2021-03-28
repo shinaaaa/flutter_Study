@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:instartgram_clone/screens/feed_srceen.dart';
-import 'package:instartgram_clone/screens/profile_screen.dart'; // android material design
+import 'package:instartgram_clone/screens/profile_screen.dart';
+
+import 'constants/screen_size.dart'; // android material design
 
 /// 홈페이지
 class HomePage extends StatefulWidget {
@@ -44,6 +46,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    if (size == null) size = MediaQuery.of(context).size;
+
     // Scaffold 기본적인 위젯 모음
     return Scaffold(
       /// IndexedStack

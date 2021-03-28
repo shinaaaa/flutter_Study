@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:instartgram_clone/constants/common_size.dart';
+import 'package:instartgram_clone/constants/screen_size.dart';
 
 class ProfileBody extends StatefulWidget {
   @override
@@ -19,41 +20,59 @@ class _ProfileBodyState extends State<ProfileBody> {
             _username(),
             _userBio(),
             _editProfileButton(),
-            Row(
-              children: [
-                Expanded(
-                    child: IconButton(
-                        icon: ImageIcon(
-                          AssetImage('assets/images/grid.png'),
-                          color: selectedLeft ? Colors.black : Colors.black26,
-                        ),
-                        onPressed: () {
-                          setState(() {
-                            selectedLeft = true;
-                          });
-                        })),
-                Expanded(
-                    child: IconButton(
-                        icon: ImageIcon(
-                          AssetImage('assets/images/saved.png'),
-                          color: selectedLeft ? Colors.black26 : Colors.black,
-                        ),
-                        onPressed: () {
-                          setState(() {
-                            selectedLeft = false;
-                          });
-                        }))
-              ],
-            )
+            _tabButtons(),
+            _selectedIndicator(),
           ]))
         ],
       ),
     );
   }
 
+  Widget _selectedIndicator() {
+    return AnimatedContainer(
+      duration: Duration(milliseconds: 300),
+      alignment: selectedLeft ? Alignment.centerLeft : Alignment.centerRight,
+      child: Container(
+        height: 3,
+        width: size.width / 2,
+        color: Colors.black87,
+      ),
+      curve: Curves.easeInOut,
+    );
+  }
+
+  Row _tabButtons() {
+    return Row(
+      children: [
+        Expanded(
+            child: IconButton(
+                icon: ImageIcon(
+                  AssetImage('assets/images/grid.png'),
+                  color: selectedLeft ? Colors.black : Colors.black26,
+                ),
+                onPressed: () {
+                  setState(() {
+                    selectedLeft = true;
+                  });
+                })),
+        Expanded(
+            child: IconButton(
+                icon: ImageIcon(
+                  AssetImage('assets/images/saved.png'),
+                  color: selectedLeft ? Colors.black26 : Colors.black,
+                ),
+                onPressed: () {
+                  setState(() {
+                    selectedLeft = false;
+                  });
+                }))
+      ],
+    );
+  }
+
   Widget _username() {
     return Padding(
-      padding: const EdgeInsets.all(common_gap),
+      padding: const EdgeInsets.symmetric(horizontal: common_gap),
       child: Text(
         "username",
         style: TextStyle(
@@ -66,7 +85,8 @@ class _ProfileBodyState extends State<ProfileBody> {
 
 Widget _userBio() {
   return Padding(
-    padding: const EdgeInsets.symmetric(horizontal: common_gap),
+    padding: const EdgeInsets.only(
+        left: common_gap, right: common_gap, bottom: common_gap),
     child: Text(
       "This is what I believe",
       style: TextStyle(
