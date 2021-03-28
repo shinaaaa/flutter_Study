@@ -8,7 +8,7 @@ class ProfileBody extends StatefulWidget {
 }
 
 class _ProfileBodyState extends State<ProfileBody> {
-  bool selectedLeft = true;
+  SelectedTab selectedTab = SelectedTab.left;
 
   @override
   Widget build(BuildContext context) {
@@ -17,12 +17,12 @@ class _ProfileBodyState extends State<ProfileBody> {
         slivers: [
           SliverList(
               delegate: SliverChildListDelegate([
-            _username(),
-            _userBio(),
-            _editProfileButton(),
-            _tabButtons(),
-            _selectedIndicator(),
-          ]))
+                _username(),
+                _userBio(),
+                _editProfileButton(),
+                _tabButtons(),
+                _selectedIndicator(),
+              ]))
         ],
       ),
     );
@@ -31,7 +31,9 @@ class _ProfileBodyState extends State<ProfileBody> {
   Widget _selectedIndicator() {
     return AnimatedContainer(
       duration: Duration(milliseconds: 300),
-      alignment: selectedLeft ? Alignment.centerLeft : Alignment.centerRight,
+      alignment: selectedTab == SelectedTab.left
+          ? Alignment.centerLeft
+          : Alignment.centerRight,
       child: Container(
         height: 3,
         width: size.width / 2,
@@ -48,22 +50,25 @@ class _ProfileBodyState extends State<ProfileBody> {
             child: IconButton(
                 icon: ImageIcon(
                   AssetImage('assets/images/grid.png'),
-                  color: selectedLeft ? Colors.black : Colors.black26,
+                  color: selectedTab == SelectedTab.left ? Colors.black : Colors
+                      .black26,
                 ),
                 onPressed: () {
                   setState(() {
-                    selectedLeft = true;
+                    selectedTab = SelectedTab.left;
                   });
                 })),
         Expanded(
             child: IconButton(
                 icon: ImageIcon(
                   AssetImage('assets/images/saved.png'),
-                  color: selectedLeft ? Colors.black26 : Colors.black,
+                  color: selectedTab == SelectedTab.left
+                      ? Colors.black26
+                      : Colors.black,
                 ),
                 onPressed: () {
                   setState(() {
-                    selectedLeft = false;
+                    selectedTab = SelectedTab.right;
                   });
                 }))
       ],
@@ -115,3 +120,5 @@ Padding _editProfileButton() {
     ),
   );
 }
+
+enum SelectedTab { left, right }
