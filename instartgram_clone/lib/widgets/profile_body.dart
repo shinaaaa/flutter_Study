@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:instartgram_clone/constants/common_size.dart';
 import 'package:instartgram_clone/constants/screen_size.dart';
@@ -17,12 +18,26 @@ class _ProfileBodyState extends State<ProfileBody> {
         slivers: [
           SliverList(
               delegate: SliverChildListDelegate([
-                _username(),
-                _userBio(),
-                _editProfileButton(),
-                _tabButtons(),
-                _selectedIndicator(),
-              ]))
+            _username(),
+            _userBio(),
+            _editProfileButton(),
+            _tabButtons(),
+            _selectedIndicator(),
+          ])),
+          SliverToBoxAdapter(
+              // shrinkWrap => true 내용물 만큼 자리 차지
+              // physics => 이중 스크롤 방지
+              child: GridView.count(
+            physics: NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            crossAxisCount: 3,
+            childAspectRatio: 1,
+            children: List.generate(
+                30,
+                (index) => CachedNetworkImage(
+                    fit: BoxFit.cover,
+                    imageUrl: "https://picsum.photos/id/$index/100/100")),
+          ))
         ],
       ),
     );
@@ -50,8 +65,9 @@ class _ProfileBodyState extends State<ProfileBody> {
             child: IconButton(
                 icon: ImageIcon(
                   AssetImage('assets/images/grid.png'),
-                  color: selectedTab == SelectedTab.left ? Colors.black : Colors
-                      .black26,
+                  color: selectedTab == SelectedTab.left
+                      ? Colors.black
+                      : Colors.black26,
                 ),
                 onPressed: () {
                   setState(() {
