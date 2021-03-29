@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:instartgram_clone/constants/common_size.dart';
 import 'package:instartgram_clone/constants/screen_size.dart';
+import 'package:instartgram_clone/screens/profile_screen.dart';
 import 'package:instartgram_clone/widgets/rounded_avatar.dart';
 
 class ProfileBody extends StatefulWidget {
@@ -118,13 +119,13 @@ class _ProfileBodyState extends State<ProfileBody> {
         child: Stack(
       children: [
         AnimatedContainer(
-          duration: Duration(milliseconds: 300),
+          duration: duration,
           transform: Matrix4.translationValues(_leftImagesPageMargin, 0, 0),
           curve: Curves.fastOutSlowIn,
           child: _images(),
         ),
         AnimatedContainer(
-          duration: Duration(milliseconds: 300),
+          duration: duration,
           transform: Matrix4.translationValues(_rightImagesPageMargin, 0, 0),
           curve: Curves.fastOutSlowIn,
           child: _images(),
@@ -149,7 +150,7 @@ class _ProfileBodyState extends State<ProfileBody> {
 
   Widget _selectedIndicator() {
     return AnimatedContainer(
-      duration: Duration(milliseconds: 300),
+      duration: duration,
       alignment: _selectedTab == SelectedTab.left
           ? Alignment.centerLeft
           : Alignment.centerRight,
