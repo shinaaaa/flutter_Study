@@ -23,7 +23,7 @@ class FeedScreen extends StatelessWidget {
           children: <Widget>[
             IconButton(
                 icon: ImageIcon(
-                  AssetImage('images/actionbar_camera.png'),
+                  AssetImage('assets/images/actionbar_camera.png'),
                   color: Colors.black87,
                 ),
                 onPressed: null)
