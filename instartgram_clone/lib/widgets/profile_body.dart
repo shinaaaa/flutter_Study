@@ -14,10 +14,30 @@ class ProfileBody extends StatefulWidget {
   _ProfileBodyState createState() => _ProfileBodyState();
 }
 
-class _ProfileBodyState extends State<ProfileBody> {
+/// with 자체를 사용
+/// extends 상속
+class _ProfileBodyState extends State<ProfileBody>
+    with SingleTickerProviderStateMixin {
   SelectedTab _selectedTab = SelectedTab.left;
   double _leftImagesPageMargin = 0;
   double _rightImagesPageMargin = size.width;
+  AnimationController _iconAnimationController;
+
+  /// State가 실행될때
+  @override
+  void initState() {
+    _iconAnimationController =
+        AnimationController(vsync: this, duration: duration);
+    super.initState();
+  }
+
+  /// State가 버려질때
+  @override
+  void dispose() {
+    /// memory leak 방지
+    _iconAnimationController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,9 +64,15 @@ class _ProfileBodyState extends State<ProfileBody> {
           textAlign: TextAlign.center,
         )),
         IconButton(
-          icon: Icon(Icons.menu),
+          icon: AnimatedIcon(
+            icon: AnimatedIcons.menu_close,
+            progress: _iconAnimationController,
+          ),
           onPressed: () {
             widget.onMenuChanged();
+            _iconAnimationController.status != AnimationStatus.completed
+                ? _iconAnimationController.forward()
+                : _iconAnimationController.reverse();
           },
         )
       ],
