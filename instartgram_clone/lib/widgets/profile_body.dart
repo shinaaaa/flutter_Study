@@ -46,7 +46,7 @@ class _ProfileBodyState extends State<ProfileBody>
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _appbar(),
-          _ProfileBody(),
+          _profileBody(),
         ],
       ),
     );
@@ -79,7 +79,7 @@ class _ProfileBodyState extends State<ProfileBody>
     );
   }
 
-  Widget _ProfileBody() {
+  Widget _profileBody() {
     return Expanded(
       child: CustomScrollView(
         slivers: [
