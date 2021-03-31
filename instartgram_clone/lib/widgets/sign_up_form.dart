@@ -36,6 +36,7 @@ class _SignUpFormState extends State<SignUpForm> {
             Image.asset("assets/images/insta_text_logo.png"),
             TextFormField(
               controller: _emailController,
+              cursorColor: Colors.black54,
               decoration: _textInputDecor("휴대폰 번호 또는 이메일 주소"),
               validator: (text) {
                 if (text.isNotEmpty && text.contains("@"))
@@ -49,6 +50,8 @@ class _SignUpFormState extends State<SignUpForm> {
             ),
             TextFormField(
               controller: _passwordController,
+              cursorColor: Colors.black54,
+              obscureText: true,
               decoration: _textInputDecor("비밀번호"),
               validator: (text) {
                 if (text.isNotEmpty && text.length > 5)
@@ -62,6 +65,8 @@ class _SignUpFormState extends State<SignUpForm> {
             ),
             TextFormField(
               controller: _confirmPasswordController,
+              cursorColor: Colors.black54,
+              obscureText: true,
               decoration: _textInputDecor("비밀번호 확인"),
               validator: (text) {
                 if (text.isNotEmpty && _passwordController.text == text)
@@ -70,6 +75,18 @@ class _SignUpFormState extends State<SignUpForm> {
                   return "비밀번호가 일치하지않습니다. 다시입려해주세요.";
               },
             ),
+            FlatButton(
+              onPressed: () {
+                if (_formKey.currentState.validate()) {}
+              },
+              color: Colors.blue,
+              child: Text(
+                "가입",
+                style: TextStyle(color: Colors.white),
+              ),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(6)),
+            )
           ],
         ),
       ),
@@ -81,6 +98,15 @@ class _SignUpFormState extends State<SignUpForm> {
         hintText: hint,
         enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Colors.grey[300]),
+            borderRadius: BorderRadius.circular(common_s_gap)),
+        focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.grey[300]),
+            borderRadius: BorderRadius.circular(common_s_gap)),
+        errorBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.redAccent),
+            borderRadius: BorderRadius.circular(common_s_gap)),
+        focusedErrorBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.orangeAccent),
             borderRadius: BorderRadius.circular(common_s_gap)),
         filled: true,
         fillColor: Colors.grey[100]);
