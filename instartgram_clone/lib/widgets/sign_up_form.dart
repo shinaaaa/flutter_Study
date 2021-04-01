@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:instartgram_clone/constants/common_size.dart';
+import 'package:instartgram_clone/home_page.dart';
 
 class SignUpForm extends StatefulWidget {
   @override
@@ -77,7 +78,13 @@ class _SignUpFormState extends State<SignUpForm> {
             ),
             FlatButton(
               onPressed: () {
-                if (_formKey.currentState.validate()) {}
+                if (_formKey.currentState.validate()) {
+                  /// Navigator => 화면 변경
+                  /// pushReplacement => 현재 화면을 종료하고 화면을 변경한다.
+                  /// push => 현재 화면을 뒤로 보내고 화면을 변경한다.
+                  Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(builder: (context) => HomePage()));
+                }
               },
               color: Colors.blue,
               child: Text(
@@ -96,19 +103,23 @@ class _SignUpFormState extends State<SignUpForm> {
   InputDecoration _textInputDecor(String hint) {
     return InputDecoration(
         hintText: hint,
-        enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.grey[300]),
-            borderRadius: BorderRadius.circular(common_s_gap)),
-        focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.grey[300]),
-            borderRadius: BorderRadius.circular(common_s_gap)),
-        errorBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.redAccent),
-            borderRadius: BorderRadius.circular(common_s_gap)),
-        focusedErrorBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.orangeAccent),
-            borderRadius: BorderRadius.circular(common_s_gap)),
+        enabledBorder: _activieInputBorder(),
+        focusedBorder: _activieInputBorder(),
+        errorBorder: _errorInputBorder(),
+        focusedErrorBorder: _errorInputBorder(),
         filled: true,
         fillColor: Colors.grey[100]);
+  }
+
+  OutlineInputBorder _errorInputBorder() {
+    return OutlineInputBorder(
+        borderSide: BorderSide(color: Colors.redAccent),
+        borderRadius: BorderRadius.circular(common_s_gap));
+  }
+
+  OutlineInputBorder _activieInputBorder() {
+    return OutlineInputBorder(
+        borderSide: BorderSide(color: Colors.grey[300]),
+        borderRadius: BorderRadius.circular(common_s_gap));
   }
 }
