@@ -76,54 +76,70 @@ class _SignUpFormState extends State<SignUpForm> {
                   return "비밀번호가 일치하지않습니다. 다시입려해주세요.";
               },
             ),
-            FlatButton(
-              onPressed: () {
-                if (_formKey.currentState.validate()) {
-                  /// Navigator => 화면 변경
-                  /// pushReplacement => 현재 화면을 종료하고 화면을 변경한다.
-                  /// push => 현재 화면을 뒤로 보내고 화면을 변경한다.
-                  Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (context) => HomePage()));
-                }
-              },
-              color: Colors.blue,
-              child: Text(
-                "가입",
-                style: TextStyle(color: Colors.white),
-              ),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(6)),
-            ),
             SizedBox(
               height: common_s_gap,
             ),
-            Stack(
-              alignment: Alignment.center,
-              children: [
-                Positioned(
-                  right: 0,
-                  left: 0,
-                  height: 1,
-                  child: Container(
-                    color: Colors.grey[300],
-                    height: 1,
-                  ),
-                ),
-                Container(
-                  color: Colors.grey[50],
-                  height: 1,
-                  width: 60,
-                ),
-                Text(
-                  "OR",
-                  style: TextStyle(
-                      color: Colors.grey[500], fontWeight: FontWeight.bold),
-                )
-              ],
+            _submitButton(context),
+            SizedBox(
+              height: common_s_gap,
+            ),
+            onDivider(),
+            FlatButton.icon(
+              onPressed: () {},
+              textColor: Colors.blue,
+              icon: ImageIcon(AssetImage("assets/images/facebook.png")),
+              label: Text('Facebook으로 로그인'),
             )
           ],
         ),
       ),
+    );
+  }
+
+  FlatButton _submitButton(BuildContext context) {
+    return FlatButton(
+      onPressed: () {
+        if (_formKey.currentState.validate()) {
+          /// Navigator => 화면 변경
+          /// pushReplacement => 현재 화면을 종료하고 화면을 변경한다.
+          /// push => 현재 화면을 뒤로 보내고 화면을 변경한다.
+          Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (context) => HomePage()));
+        }
+      },
+      color: Colors.blue,
+      child: Text(
+        "가입",
+        style: TextStyle(color: Colors.white),
+      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
+    );
+  }
+
+  Stack onDivider() {
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        Positioned(
+          right: 0,
+          left: 0,
+          height: 1,
+          child: Container(
+            color: Colors.grey[300],
+            height: 1,
+          ),
+        ),
+        Container(
+          color: Colors.grey[50],
+          height: 1,
+          width: 60,
+        ),
+        Text(
+          "OR",
+          style:
+              TextStyle(color: Colors.grey[500], fontWeight: FontWeight.bold),
+        )
+      ],
     );
   }
 
