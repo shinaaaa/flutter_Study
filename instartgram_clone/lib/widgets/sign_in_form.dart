@@ -61,6 +61,16 @@ class _SignInFormState extends State<SignInForm> {
                   return "올바른 비밀번호를 입력해주세요.";
               },
             ),
+            FlatButton(
+              onPressed: () {},
+              child: Align(
+                alignment: Alignment.centerRight,
+                child: Text(
+                  "비밀번호 찾기",
+                  style: TextStyle(color: Colors.blue),
+                ),
+              ),
+            ),
             SizedBox(
               height: common_s_gap,
             ),
