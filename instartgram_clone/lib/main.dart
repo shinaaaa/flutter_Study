@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart'; // iOS cupertino design
 import 'package:flutter/material.dart'; // android material design
 import 'package:instartgram_clone/constants/material_white.dart';
-import 'package:instartgram_clone/screens/auth_screen.dart';
+import 'package:instartgram_clone/home_page.dart';
 
 /// "Dart"의 처음 실행되는 부분
 void main() {
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: AuthScreen(),
+      home: HomePage(),
       theme: ThemeData(primarySwatch: white),
     );
   }

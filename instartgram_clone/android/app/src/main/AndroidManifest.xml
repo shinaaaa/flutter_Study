@@ -1,6 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.shindorim.instartgram_clone">
-   <application
+    <uses-permission android:name="android.permission.CAMERA" />
+    <application
         android:label="instartgram_clone"
         android:icon="@mipmap/ic_launcher">
         <activity
