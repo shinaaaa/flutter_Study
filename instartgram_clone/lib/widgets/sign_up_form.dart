@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:instartgram_clone/constants/auth_input_decor.dart';
 import 'package:instartgram_clone/constants/common_size.dart';
 import 'package:instartgram_clone/home_page.dart';
 
@@ -38,7 +39,7 @@ class _SignUpFormState extends State<SignUpForm> {
             TextFormField(
               controller: _emailController,
               cursorColor: Colors.black54,
-              decoration: _textInputDecor("휴대폰 번호 또는 이메일 주소"),
+              decoration: textInputDecor("휴대폰 번호 또는 이메일 주소"),
               validator: (text) {
                 if (text.isNotEmpty && text.contains("@"))
                   return null;
@@ -53,7 +54,7 @@ class _SignUpFormState extends State<SignUpForm> {
               controller: _passwordController,
               cursorColor: Colors.black54,
               obscureText: true,
-              decoration: _textInputDecor("비밀번호"),
+              decoration: textInputDecor("비밀번호"),
               validator: (text) {
                 if (text.isNotEmpty && text.length > 5)
                   return null;
@@ -68,7 +69,7 @@ class _SignUpFormState extends State<SignUpForm> {
               controller: _confirmPasswordController,
               cursorColor: Colors.black54,
               obscureText: true,
-              decoration: _textInputDecor("비밀번호 확인"),
+              decoration: textInputDecor("비밀번호 확인"),
               validator: (text) {
                 if (text.isNotEmpty && _passwordController.text == text)
                   return null;
@@ -83,7 +84,7 @@ class _SignUpFormState extends State<SignUpForm> {
             SizedBox(
               height: common_s_gap,
             ),
-            onDivider(),
+            OrDivider(),
             FlatButton.icon(
               onPressed: () {},
               textColor: Colors.blue,
@@ -115,8 +116,15 @@ class _SignUpFormState extends State<SignUpForm> {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
     );
   }
+}
 
-  Stack onDivider() {
+class OrDivider extends StatelessWidget {
+  const OrDivider({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return Stack(
       alignment: Alignment.center,
       children: [
@@ -141,28 +149,5 @@ class _SignUpFormState extends State<SignUpForm> {
         )
       ],
     );
-  }
-
-  InputDecoration _textInputDecor(String hint) {
-    return InputDecoration(
-        hintText: hint,
-        enabledBorder: _activieInputBorder(),
-        focusedBorder: _activieInputBorder(),
-        errorBorder: _errorInputBorder(),
-        focusedErrorBorder: _errorInputBorder(),
-        filled: true,
-        fillColor: Colors.grey[100]);
-  }
-
-  OutlineInputBorder _errorInputBorder() {
-    return OutlineInputBorder(
-        borderSide: BorderSide(color: Colors.redAccent),
-        borderRadius: BorderRadius.circular(common_s_gap));
-  }
-
-  OutlineInputBorder _activieInputBorder() {
-    return OutlineInputBorder(
-        borderSide: BorderSide(color: Colors.grey[300]),
-        borderRadius: BorderRadius.circular(common_s_gap));
   }
 }

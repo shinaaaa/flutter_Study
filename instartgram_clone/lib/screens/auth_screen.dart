@@ -7,7 +7,7 @@ class AuthScreen extends StatefulWidget {
 }
 
 class _AuthScreenState extends State<AuthScreen> {
-  int selectForm = 0;
+  int selectForm = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -38,11 +38,11 @@ class _AuthScreenState extends State<AuthScreen> {
                   },
                   child: RichText(
                     text: TextSpan(
-                        text: (selectForm == 0 ? "계정이 없으신가요? " : "계정이 있으신가요? "),
+                        text: (selectForm == 1 ? "계정이 없으신가요? " : "계정이 있으신가요? "),
                         style: TextStyle(color: Colors.black45),
                         children: [
                           TextSpan(
-                              text: (selectForm == 0 ? "가입하기" : "로그인"),
+                              text: (selectForm == 1 ? "가입하기" : "로그인"),
                               style: TextStyle(
                                   color: Colors.blue,
                                   fontWeight: FontWeight.bold))
