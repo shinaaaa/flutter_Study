@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:instartgram_clone/screens/camera_screen.dart';
 import 'package:instartgram_clone/screens/feed_srceen.dart';
 import 'package:instartgram_clone/screens/profile_screen.dart';
+import 'package:instartgram_clone/screens/search_screen.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import 'constants/screen_size.dart'; // android material design
@@ -38,9 +39,7 @@ class _HomePageState extends State<HomePage> {
   /// 화면 전환
   static List<Widget> _screens = <Widget>[
     FeedScreen(),
-    Container(
-      color: Colors.blue,
-    ),
+    SearchScreen(),
     Container(
       color: Colors.green,
     ),
