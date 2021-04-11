@@ -45,5 +45,7 @@
     <string>Can I use the camera please?</string>
     <key>NSMicrophoneUsageDescription</key>
     <string>Can I use the mic please?</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>This is called Privacy - Photo Library Usage Description in the visual editor.</string>
 </dict>
 </plist>

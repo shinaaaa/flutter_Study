@@ -1,11 +1,11 @@
+import 'dart:io';
+
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:instartgram_clone/constants/screen_size.dart';
 import 'package:instartgram_clone/models/camera_state.dart';
 import 'package:instartgram_clone/screens/share_post_screen.dart';
 import 'package:instartgram_clone/widgets/my_progress_indicator.dart';
-import 'package:path/path.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 
 class TakePhoto extends StatefulWidget {
@@ -61,13 +61,9 @@ Widget _getPreview(CameraState cameraState) {
 }
 
 void _attemptTakePhoto(BuildContext context, CameraState cameraState) async {
-  final String timeInMilli = DateTime.now().millisecond.toString();
   try {
-    //
-    final path = join((await getTemporaryDirectory()).path, '$timeInMilli.png');
-    XFile imageFile;
-    imageFile = await cameraState.controller.takePicture();
+    XFile pictureTaken = await cameraState.controller.takePicture();
     Navigator.of(context)
-        .push(MaterialPageRoute(builder: (_) => SharePostScreen(imageFile)));
+        .push(MaterialPageRoute(builder: (_) => SharePostScreen(pictureTaken)));
   } catch (e) {}
 }
