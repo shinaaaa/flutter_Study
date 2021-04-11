@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:instartgram_clone/constants/auth_input_decor.dart';
 import 'package:instartgram_clone/constants/common_size.dart';
-
-import '../home_page.dart';
+import 'package:instartgram_clone/models/firebase_auth_state.dart';
+import 'package:provider/provider.dart';
 
 class SignInForm extends StatefulWidget {
   @override
@@ -80,7 +80,9 @@ class _SignInFormState extends State<SignInForm> {
             ),
             OrDivider(),
             FlatButton.icon(
-              onPressed: () {},
+              onPressed: () {
+                Provider.of<FireBaseAuthState>(context, listen: false)
+                    .changeFirebaseAuthStatus(FireBaseAuthStatus.SIGN_IN);},
               textColor: Colors.blue,
               icon: ImageIcon(AssetImage("assets/images/facebook.png")),
               label: Text('Facebook으로 로그인'),
@@ -95,11 +97,8 @@ class _SignInFormState extends State<SignInForm> {
     return FlatButton(
       onPressed: () {
         if (_formKey.currentState.validate()) {
-          /// Navigator => 화면 변경
-          /// pushReplacement => 현재 화면을 종료하고 화면을 변경한다.
-          /// push => 현재 화면을 뒤로 보내고 화면을 변경한다.
-          Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => HomePage()));
+          Provider.of<FireBaseAuthState>(context, listen: false)
+              .changeFirebaseAuthStatus(FireBaseAuthStatus.SIGN_IN);
         }
       },
       color: Colors.blue,

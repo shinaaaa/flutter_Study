@@ -2,6 +2,10 @@ import 'package:flutter/cupertino.dart'; // iOS cupertino design
 import 'package:flutter/material.dart'; // android material design
 import 'package:instartgram_clone/constants/material_white.dart';
 import 'package:instartgram_clone/home_page.dart';
+import 'package:instartgram_clone/models/firebase_auth_state.dart';
+import 'package:instartgram_clone/screens/auth_screen.dart';
+import 'package:instartgram_clone/widgets/my_progress_indicator.dart';
+import 'package:provider/provider.dart';
 
 /// "Dart"의 처음 실행되는 부분
 void main() {
@@ -12,12 +16,30 @@ void main() {
 /// StatelessWidget -> 위젯의 상태 변화가 없다.
 /// StatefulWidget -> 위젯의 상태 변화가 있다.
 class MyApp extends StatelessWidget {
+  FireBaseAuthState _fireBaseAuthState = FireBaseAuthState();
+
   /// 위젯이 생성되자마자 실행
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: HomePage(),
-      theme: ThemeData(primarySwatch: white),
+    return ChangeNotifierProvider.value(
+      value: _fireBaseAuthState,
+      child: MaterialApp(
+          home: Consumer(
+              builder: (BuildContext context,
+                  FireBaseAuthState fireBaseAuthState, Widget child) {
+                switch (fireBaseAuthState.fireBaseAuthStatus) {
+                  case FireBaseAuthStatus.SIGN_OUT:
+                    return AuthScreen();
+                  case FireBaseAuthStatus.PROGRESS:
+                    return MyProgressIndicator();
+                  case FireBaseAuthStatus.SIGN_IN:
+                    return HomePage();
+                  default:
+                    return MyProgressIndicator();
+                }
+              },
+              child: HomePage()),
+          theme: ThemeData(primarySwatch: white)),
     );
   }
 }
