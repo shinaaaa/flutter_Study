@@ -10,11 +10,20 @@ class FireBaseAuthState extends ChangeNotifier {
     _fireBaseAuth.authStateChanges().listen((firebaseUser) {
       if (firebaseUser == null && _firebaseUser == null) {
         return;
-      } else if(firebaseUser != _firebaseUser) {
+      } else if (firebaseUser != _firebaseUser) {
         _firebaseUser = firebaseUser;
         changeFirebaseAuthStatus();
       }
     });
+  }
+
+  void signOut() {
+    _fireBaseAuthStatus = FireBaseAuthStatus.SIGN_OUT;
+    if (_firebaseUser != null) {
+      _firebaseUser = null;
+      _fireBaseAuth.signOut();
+    }
+    notifyListeners();
   }
 
   void changeFirebaseAuthStatus([FireBaseAuthStatus fireBaseAuthStatus]) {

@@ -4,6 +4,7 @@ import 'package:instartgram_clone/constants/material_white.dart';
 import 'package:instartgram_clone/home_page.dart';
 import 'package:instartgram_clone/models/firebase_auth_state.dart';
 import 'package:instartgram_clone/screens/auth_screen.dart';
+import 'package:instartgram_clone/screens/profile_screen.dart';
 import 'package:instartgram_clone/widgets/my_progress_indicator.dart';
 import 'package:provider/provider.dart';
 
@@ -17,6 +18,7 @@ void main() {
 /// StatefulWidget -> 위젯의 상태 변화가 있다.
 class MyApp extends StatelessWidget {
   FireBaseAuthState _fireBaseAuthState = FireBaseAuthState();
+  Widget _currentWidget;
 
   /// 위젯이 생성되자마자 실행
   @override
@@ -29,14 +31,19 @@ class MyApp extends StatelessWidget {
                   FireBaseAuthState fireBaseAuthState, Widget child) {
                 switch (fireBaseAuthState.fireBaseAuthStatus) {
                   case FireBaseAuthStatus.SIGN_OUT:
-                    return AuthScreen();
-                  case FireBaseAuthStatus.PROGRESS:
-                    return MyProgressIndicator();
+                    _currentWidget = AuthScreen();
+                    break;
                   case FireBaseAuthStatus.SIGN_IN:
-                    return HomePage();
+                    _currentWidget = HomePage();
+                    break;
                   default:
-                    return MyProgressIndicator();
+                    _currentWidget = MyProgressIndicator();
+                    break;
                 }
+                return AnimatedSwitcher(
+                  child: _currentWidget,
+                  duration: duration,
+                );
               },
               child: HomePage()),
           theme: ThemeData(primarySwatch: white)),
