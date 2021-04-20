@@ -82,7 +82,8 @@ class _SignInFormState extends State<SignInForm> {
             FlatButton.icon(
               onPressed: () {
                 Provider.of<FireBaseAuthState>(context, listen: false)
-                    .changeFirebaseAuthStatus(FireBaseAuthStatus.SIGN_IN);},
+                    .changeFirebaseAuthStatus(FireBaseAuthStatus.SIGN_IN);
+              },
               textColor: Colors.blue,
               icon: ImageIcon(AssetImage("assets/images/facebook.png")),
               label: Text('Facebook으로 로그인'),
@@ -97,8 +98,8 @@ class _SignInFormState extends State<SignInForm> {
     return FlatButton(
       onPressed: () {
         if (_formKey.currentState.validate()) {
-          Provider.of<FireBaseAuthState>(context, listen: false)
-              .changeFirebaseAuthStatus(FireBaseAuthStatus.SIGN_IN);
+          Provider.of<FireBaseAuthState>(context, listen: false).login(context,
+              email: _emailController.text, password: _passwordController.text);
         }
       },
       color: Colors.blue,

@@ -23,6 +23,8 @@ class MyApp extends StatelessWidget {
   /// 위젯이 생성되자마자 실행
   @override
   Widget build(BuildContext context) {
+    _fireBaseAuthState.watchAuthChange();
+
     return ChangeNotifierProvider.value(
       value: _fireBaseAuthState,
       child: MaterialApp(

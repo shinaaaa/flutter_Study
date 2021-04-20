@@ -102,8 +102,10 @@ class _SignUpFormState extends State<SignUpForm> {
     return FlatButton(
       onPressed: () {
         if (_formKey.currentState.validate()) {
-          Provider.of<FireBaseAuthState>(context, listen: false)
-              .changeFirebaseAuthStatus(FireBaseAuthStatus.SIGN_IN);
+          Provider.of<FireBaseAuthState>(context, listen: false).registerUser(
+              context,
+              email: _emailController.text,
+              password: _passwordController.text);
         }
       },
       color: Colors.blue,
